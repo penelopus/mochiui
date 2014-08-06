@@ -1,0 +1,189 @@
+/* 
+ * VARIABLES
+ */
+
+// window size
+$windowWidth: 1920px
+$windowHeight: 1080px
+
+/* 
+ * Math notes :) 
+ * The Discover UI implies 3 panels on screen at once
+ * therefore 4 margins. This will exits to use the entire screen. 
+ * (1920 - (4*6)) / 3 = 648 
+ * 1920 = window size
+ * 6 = margin size
+ * 648 = item size
+
+// DISCOVORY ITEMS SIZES
+$NUM_OF_ITEMS: 3
+$NUM_OF_MARGINS: 4
+
+$itemMarginSize: 6px
+
+// Calculate the size of the discovItems
+$discovItemWidth: ($windowWidth - ($NUM_OF_MARGINS * $itemMarginSize)) / $NUM_OF_ITEMS
+//$discovItemWidth: 3 * 
+
+// NUMBER OF HORIZONTAL ITEMS
+$numberOfHorizontalItems: 9
+
+// channel horizontal 
+// Full size
+// TODO: make height dynamic by aspect ratio
+$slantAppHeight: 350px
+
+// horizontalGroup width for all small items and 1 FULL SCREEN item
+$launcherWidthFullScreen: (($discovItemWidth + $itemMarginSize) * $numberOfHorizontalItems) + $windowWidth // small APP/CHAN width + 10px margin * number of items + 1 fullscreenItem
+
+/* 
+ * EXTENDS
+ */
+
+.fullWindow
+  width: $windowWidth
+  height: $windowHeight
+  margin: 0px
+  padding: 0px
+
+.flexBoxContainer
+  display: -webkit-flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: center
+  align-items: center
+  align-content: center
+  @extend .fullWindow
+
+// main stles
+.main 
+  position: relative
+  @extend .fullWindow
+  background: rgba(123,5,22,0.5) url(../../assets/mainbackground.png)
+
+.scrimup
+  background: rgba(0,0,0,0.2)
+  &.today
+    background: rgba(0,0,0,0.8)
+
+.background-horizontalGroup 
+  opacity: .4
+
+.horizontalGroup 
+  display: flex
+  display: -webkit-flex
+  -webkit-flex-flow: row nowrap
+  -webkit-justify-content: flex-start
+  -webkit-align-items: center
+  margin: 0px
+  padding: 0px
+  position: relative
+  //width: $launcherWidth
+  width: $launcherWidthFullScreen
+  height: $windowHeight
+  background: rgba(1,255,1,0.2)
+  //-webkit-transform: translateY(500px)
+  -webkit-transition: -webkit-transform .4s ease-in-out, opacity .4s ease-in-out .2s
+  &.hidden
+    opacity: 0
+  &.item1 
+    -webkit-transform: translateX(0px)
+  @for $i from 2 through $numberOfHorizontalItems
+    &.item#{$i}
+      -webkit-transform: translateX(($discovItemWidth + $itemMarginSize) * (-$i+1))
+  &.killItemMargins // kill item margins when app/chan selected
+    opacity: 1
+    //-webkit-transform: translate(0px, 0px)
+    height: $windowHeight
+    .item 
+      // TODO: Testing enlarging all items when 
+      // item is selected vs. elarging one item
+      // when it is clicked the other items 
+      // calculate acording.
+      @extend .fullWindow
+      -webkit-transform: translate(0px, 0px)
+      margin-right: 0px
+  &.fullLauncher
+    opacity: 1
+    //-webkit-transform: translate(0px, 300px)
+    &.recentsOn
+      -webkit-transform: translate($windowWidth - $discovItemWidth, 700px)
+    &.appLauncherOn
+      -webkit-transform: translate(-$windowWidth + $discovItemWidth, 700px)
+
+.item
+  display: -webkit-flex
+  -webkit-flex-flow: column
+  width: $discovItemWidth
+  height: $slantAppHeight
+  float: left
+  outline: 5px solid #fff
+  outline-offset: -5px
+  margin-right: $itemMarginSize
+  -webkit-transition: width .4s ease .2s, height .4s ease .2s, -webkit-transform .4s ease, top .4s ease, left .4s ease
+  // TODO: Testing single Item enlarge
+  &:first-child
+    margin-left: $itemMarginSize
+  &.fullScreenItem
+    @extend .fullWindow
+    outline: none
+    -webkit-transform: translate(0px, 0px)
+    top: 0px
+    left: 0px
+
+.itemDetail
+  padding: 40px
+  width: 1600px
+  height: 550px
+  outline: 5px solid #fff
+  outline-offset: -5px
+  background: #a6a6a6
+  color: #fff
+  .leftContainer
+    display: inline-block
+    float: left
+    width: 50%
+    .thumbnail
+      display: inline
+      width: 700px
+      height: 400px
+  .rightContainer
+    display: inline-block
+    float: left
+    width: 50%
+    height: 100%
+    .moon-divider-text, p
+      font-size: 30px
+      color: #fff
+    .moon-divider
+      border-bottom: 2px solid #fff
+    p 
+      line-height: 50px
+    .buttonGroup
+      position: absolute
+      bottom: 0px
+      right: 0px
+
+.itemInfo
+  width: 700px
+  display: -webkit-flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: space-between
+  align-content: center
+  .detailSection
+    color: #fff
+    margin-top: 20px
+    .moon-divider-text
+      font-size: 30px
+      color: #fff
+    .moon-divider
+      border-bottom: 2px solid #fff
+    p
+      font-size: 40px
+
+.itemDetailHolder
+  @extend .fullWindow
+  position: absolute
+  top: 0px
+  left: 0px

@@ -1,0 +1,156 @@
+/* VARIABLES
+ */
+/* Math notes :) 
+ * The Discover UI implies 3 panels on screen at once
+ * therefore 4 margins. This will exits to use the entire screen. 
+ * (1920 - (4*6)) / 3 = 648 
+ * 1920 = window size
+ * 6 = margin size
+ * 648 = item size */
+/* EXTENDS
+ */
+.fullWindow, .flexBoxContainer, .main, .horizontalGroup.killItemMargins .item, .item.fullScreenItem, .itemDetailHolder {
+  width: 1920px;
+  height: 1080px;
+  margin: 0px;
+  padding: 0px; }
+
+.flexBoxContainer {
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center; }
+
+.main {
+  position: relative;
+  background: rgba(123, 5, 22, 0.5) url(../../assets/mainbackground.png); }
+
+.scrimup {
+  background: rgba(0, 0, 0, 0.2); }
+  .scrimup.today {
+    background: rgba(0, 0, 0, 0.8); }
+
+.background-horizontalGroup {
+  opacity: 0.4; }
+
+.horizontalGroup {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row nowrap;
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: center;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  width: 7662px;
+  height: 1080px;
+  background: rgba(1, 255, 1, 0.2);
+  -webkit-transition: -webkit-transform 0.4s ease-in-out, opacity 0.4s ease-in-out 0.2s; }
+  .horizontalGroup.hidden {
+    opacity: 0; }
+  .horizontalGroup.item1 {
+    -webkit-transform: translateX(0px); }
+  .horizontalGroup.item2 {
+    -webkit-transform: translateX(-638px); }
+  .horizontalGroup.item3 {
+    -webkit-transform: translateX(-1276px); }
+  .horizontalGroup.item4 {
+    -webkit-transform: translateX(-1914px); }
+  .horizontalGroup.item5 {
+    -webkit-transform: translateX(-2552px); }
+  .horizontalGroup.item6 {
+    -webkit-transform: translateX(-3190px); }
+  .horizontalGroup.item7 {
+    -webkit-transform: translateX(-3828px); }
+  .horizontalGroup.item8 {
+    -webkit-transform: translateX(-4466px); }
+  .horizontalGroup.item9 {
+    -webkit-transform: translateX(-5104px); }
+  .horizontalGroup.killItemMargins {
+    opacity: 1;
+    height: 1080px; }
+    .horizontalGroup.killItemMargins .item {
+      -webkit-transform: translate(0px, 0px);
+      margin-right: 0px; }
+  .horizontalGroup.fullLauncher {
+    opacity: 1; }
+    .horizontalGroup.fullLauncher.recentsOn {
+      -webkit-transform: translate(1288px, 700px); }
+    .horizontalGroup.fullLauncher.appLauncherOn {
+      -webkit-transform: translate(-1288px, 700px); }
+
+.item {
+  display: -webkit-flex;
+  -webkit-flex-flow: column;
+  width: 632px;
+  height: 350px;
+  float: left;
+  outline: 5px solid white;
+  outline-offset: -5px;
+  margin-right: 6px;
+  -webkit-transition: width 0.4s ease 0.2s, height 0.4s ease 0.2s, -webkit-transform 0.4s ease, top 0.4s ease, left 0.4s ease; }
+  .item:first-child {
+    margin-left: 6px; }
+  .item.fullScreenItem {
+    outline: none;
+    -webkit-transform: translate(0px, 0px);
+    top: 0px;
+    left: 0px; }
+
+.itemDetail {
+  padding: 40px;
+  width: 1600px;
+  height: 550px;
+  outline: 5px solid white;
+  outline-offset: -5px;
+  background: #a6a6a6;
+  color: white; }
+  .itemDetail .leftContainer {
+    display: inline-block;
+    float: left;
+    width: 50%; }
+    .itemDetail .leftContainer .thumbnail {
+      display: inline;
+      width: 700px;
+      height: 400px; }
+  .itemDetail .rightContainer {
+    display: inline-block;
+    float: left;
+    width: 50%;
+    height: 100%; }
+    .itemDetail .rightContainer .moon-divider-text, .itemDetail .rightContainer p {
+      font-size: 30px;
+      color: white; }
+    .itemDetail .rightContainer .moon-divider {
+      border-bottom: 2px solid white; }
+    .itemDetail .rightContainer p {
+      line-height: 50px; }
+    .itemDetail .rightContainer .buttonGroup {
+      position: absolute;
+      bottom: 0px;
+      right: 0px; }
+
+.itemInfo {
+  width: 700px;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
+  align-content: center; }
+  .itemInfo .detailSection {
+    color: white;
+    margin-top: 20px; }
+    .itemInfo .detailSection .moon-divider-text {
+      font-size: 30px;
+      color: white; }
+    .itemInfo .detailSection .moon-divider {
+      border-bottom: 2px solid white; }
+    .itemInfo .detailSection p {
+      font-size: 40px; }
+
+.itemDetailHolder {
+  position: absolute;
+  top: 0px;
+  left: 0px; }
