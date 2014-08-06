@@ -1,0 +1,8 @@
+/build
+/deploy
+/enyo
+/lib
+
+.DS_Store
+
+/*_*
